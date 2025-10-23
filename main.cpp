@@ -126,25 +126,16 @@ void printSummary(const vector<Token>& tokens) {
 }
 
 int main() {
-    vector<string> tests = {
-        "x = (3 + 5) * 2;",
-        "ab = 3$;",
-        "y=12+z;",
-        "A = 2;",
-        "m = (4 + ) * 3;"
-    };
+   string input;
+    cout << "Enter an equation or statement: ";
+    getline(cin, input); // Allow spaces and full line input
 
-    for (const auto& src : tests) {
-        cout << "\n=============================================\n";
-        cout << "Input: " << src << "\n";
+    vector<Token> invalidTokens;
+    vector<Token> tokens = tokenize(input, invalidTokens);
 
-        vector<Token> invalidTokens;
-        vector<Token> tokens = tokenize(src, invalidTokens);
-
-        printTokens(tokens);
-        printInvalids(invalidTokens);
-        printSummary(tokens);
-    }
+    printTokens(tokens);
+    printInvalids(invalidTokens);
+    printSummary(tokens);
 
     return 0;
 }
